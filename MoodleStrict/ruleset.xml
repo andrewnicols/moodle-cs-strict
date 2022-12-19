@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
+  name="MoodleStrict">
+
+    <description>A stricter extenstion to the Moodle PHP CodeSniffer coding style standard</description>
+
+    <arg name="extensions" value="php" />
+    <arg name="encoding" value="utf-8" />
+
+    <!-- Include the PSR-12 ruleset with relevant Moodle exclusions -->
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+        <exclude name="PSR12.Classes.OpeningBraceSpace.Found"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
+        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
+        <exclude name="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed"/>
+        <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore" />
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter" />
+    </rule>
+
+    <!-- Missing namespaces should constitute a warning for now -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+      <type>warning</type>
+    </rule>
+
+    <!-- Pick up unused class imports -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
+
+    <!-- Pick up unused variables -->
+    <rule ref="VariableAnalysis">
+      <properties>
+        <property name="validUndefinedVariableNames" value="CFG COURSE OUTPUT PAGE SITE USER"/>
+      </properties>
+    </rule>
+
+    <!-- Prefer the short form of arrays ([]) rather than long form (array()) -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+    <!-- Require trailing array comma on multi-line arrays -->
+    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
+
+    <!-- Disallow implicit array creation -->
+    <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation" />
+
+    <rule ref="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace">
+      <properties>
+        <property name="spacesAroundBrackets" value="0"/>
+        <property name="enableEmptyArrayCheck" value="true"/>
+      </properties>
+    </rule>
+
+    <!-- Require [...] instead of list(...) -->
+    <rule ref="SlevomatCodingStandard.PHP.ShortList" />
+
+    <!-- Requires that object instantiation includes parens -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses" />
+
+    <!-- Only allow one class import per line -->
+    <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
+
+    <!-- Prevent use of leading \ in class import -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash" />
+
+    <!-- Alphabetically sort use statements -->
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
+
+    <!-- Disallow grouped use statements -->
+    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
+
+    <!-- Use short types for casting -->
+    <rule ref="SlevomatCodingStandard.PHP.TypeCast" />
+
+    <!-- Require one space either side of concat operations -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+      <properties>
+        <property name="spacing" value="1" />
+        <property name="ignoreNewlines" value="true" />
+      </properties>
+    </rule>
+
+    <!-- Require one space between a cast and the value being cast -->
+    <rule ref="Generic.Formatting.SpaceAfterCast">
+      <properties>
+        <property name="spacing" value="1" />
+        <property name="ignoreNewlines" value="true" />
+      </properties>
+    </rule>
+
+    <!-- Prevent space between a ! and a value -->
+    <rule ref="Generic.Formatting.SpaceAfterNot">
+      <properties>
+        <property name="spacing" value="0" />
+        <property name="ignoreNewlines" value="true" />
+      </properties>
+    </rule>
+
+    <!-- Prevent spacing inside parens -->
+    <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing">
+      <properties>
+        <property name="ignoreNewlines" value="true" />
+      </properties>
+    </rule>
+
+    <!-- Include the upstream Moodle rules too -->
+    <rule ref="moodle" />
+
+    <!-- Indent arrays correctly -->
+    <rule ref="Generic.Arrays.ArrayIndent" />
+
+    <!-- ScopeIndent should apply everywhere -->
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+      <properties>
+        <property name="exact" value="true"/>
+      </properties>
+    </rule>
+
+    <!--
+      For Array declarations, ensure that multi-line arrays have one key per line
+      with the first and last keys on their own lines.
+    -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration">
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNoNewline" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
+    </rule>
+
+</ruleset>

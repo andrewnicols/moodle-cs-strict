@@ -1,0 +1,36 @@
+{
+    "name": "andrewnicols/moodle-cs-strict",
+    "type": "phpcodesniffer-standard",
+    "description": "The Moodle coding standard with added standards to make it stricter",
+    "keywords": [
+        "phpcs",
+        "standards",
+        "code review",
+        "moodle"
+    ],
+    "require": {
+        "moodlehq/moodle-cs": "*",
+        "sirbrillig/phpcs-variable-analysis": "^2.11",
+        "slevomat/coding-standard": "^8.7"
+    },
+    "license": "GPL-2.0-or-later",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+    },
+    "scripts": {
+        "install-codestandards": [
+            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+        ]
+    },
+    "autoload": {
+      "psr-4": {
+        "AndrewNicols\\MoodleStrict\\": "MoodleStrict/"
+      }
+    }
+}
