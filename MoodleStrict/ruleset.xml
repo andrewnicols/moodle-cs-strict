@@ -135,4 +135,7 @@
         <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
     </rule>
 
+    <!-- Ban empty lines as the first line of a function -->
+    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace.SpacingAfter"/>
+
 </ruleset>
